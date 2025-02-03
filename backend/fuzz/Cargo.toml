@@ -1,0 +1,70 @@
+[package]
+name = "abacus-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+abacus = { path = ".." }
+libfuzzer-sys = "0.4"
+pyo3 = { version = "0.23", features = ["auto-initialize"] }
+
+[dependencies.kiesraad-model]
+git = "https://github.com/squell/electionchecker.git"
+rev = "07a863c7c7fbb4e6378ba65748718e589e9ebb9d"
+features = [
+    "whole-seat-opt", # makes allocation faster by allocation whole seats first
+]
+default-features = false
+
+[[bin]]
+name = "fractions"
+path = "fuzz_targets/fractions.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "apportionment"
+path = "fuzz_targets/apportionment.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "population_monotonicity"
+path = "fuzz_targets/population_monotonicity.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "house_monotonicity"
+path = "fuzz_targets/house_monotonicity.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "anonymity"
+path = "fuzz_targets/anonymity.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "differential_marc"
+path = "fuzz_targets/differential_marc.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "differential_python"
+path = "fuzz_targets/differential_python.rs"
+test = false
+doc = false
+bench = false

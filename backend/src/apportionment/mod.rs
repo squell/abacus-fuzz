@@ -77,3 +77,8 @@ pub(crate) mod test_helpers {
         election_summary_fixture_given_political_group_votes(total_votes, political_group_votes)
     }
 }
+
+#[cfg(fuzzing)]
+pub mod fuzz_internal {
+    pub use super::fraction::Fraction;
+}
